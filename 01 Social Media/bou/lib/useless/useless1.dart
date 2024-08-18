@@ -187,7 +187,6 @@ class _MyCustomFormState extends State<MyCustomForm> {
     final file = File('${directory.path}/user_info.txt');
 
     print('Directory: ${directory.path}');
-
     await file.writeAsString(userInfo.toFileString());
 
     print('User info saved to file: ${file.path}');
