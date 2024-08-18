@@ -143,5 +143,9 @@ app.*.symbols
 
 *.png
 *.jpg
+*.jpeg
+*.PNG
+*.JPG
+*.JPEG
 
 
