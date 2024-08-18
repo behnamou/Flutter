@@ -23,12 +23,17 @@ class MyHeader extends StatelessWidget {
                   Icons.menu_rounded,
                   color: Colors.black,
                 )),
-            const Text(
-              'b',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
+            TextButton(
+              onPressed: () {
+                AutoRouter.of(context).push(const HamsterRoute());
+              },
+              child: const Text(
+                'b',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             IconButton(

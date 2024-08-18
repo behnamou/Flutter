@@ -21,5 +21,6 @@ class AppRouter extends $AppRouter {
         AutoRoute(page: LoginRoute.page),
         AutoRoute(page: AddPostRoute.page, guards: [authGuard]),
         AutoRoute(page: Useless1Route.page, guards: [authGuard]),
+        AutoRoute(page: HamsterRoute.page, guards: [authGuard]),
       ];
 }
