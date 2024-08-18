@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:auto_route/auto_route.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
+// import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 import 'package:persian_datetime_picker/persian_datetime_picker.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
@@ -57,36 +57,29 @@ class _MyCustomFormState extends State<MyCustomForm> {
   File? _image;
   String? _numberPicked;
   bool _isFormValid = false;
-  GeoPoint _selectedLocation =
-      GeoPoint(latitude: 0.0, longitude: 0.0); // Default location
+  // GeoPoint _selectedLocation =
+  //     GeoPoint(latitude: 0.0, longitude: 0.0); // Default location
 
-  // final _mapController = MapController.withUserPosition(
-  //   trackUserLocation: const UserTrackingOption(
-  //     enableTracking: true,
-  //     unFollowUser: false,
+  // final _mapController = MapController.customLayer(
+  //   initPosition: GeoPoint(
+  //     latitude: 47.4358055,
+  //     longitude: 8.4737324,
   //   ),
-  //   useExternalTracking: true,
+  //   customTile: CustomTile(
+  //     sourceName: "opentopomap",
+  //     tileExtension: ".png",
+  //     minZoomLevel: 2,
+  //     maxZoomLevel: 19,
+  //     urlsServers: [
+  //       TileURLs(
+  //         //"https://tile.opentopomap.org/{z}/{x}/{y}"
+  //         url: "https://tile.opentopomap.org/",
+  //         subdomains: [],
+  //       )
+  //     ],
+  //     tileSize: 256,
+  //   ),
   // );
-  final _mapController = MapController.customLayer(
-    initPosition: GeoPoint(
-      latitude: 47.4358055,
-      longitude: 8.4737324,
-    ),
-    customTile: CustomTile(
-      sourceName: "opentopomap",
-      tileExtension: ".png",
-      minZoomLevel: 2,
-      maxZoomLevel: 19,
-      urlsServers: [
-        TileURLs(
-          //"https://tile.opentopomap.org/{z}/{x}/{y}"
-          url: "https://tile.opentopomap.org/",
-          subdomains: [],
-        )
-      ],
-      tileSize: 256,
-    ),
-  );
 
   void _updateFormValidState() {
     setState(() {
@@ -104,7 +97,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
   void dispose() {
     _nameController.dispose();
     _passwordController.dispose();
-    _mapController.dispose();
+    // _mapController.dispose();
     super.dispose();
   }
 
@@ -482,44 +475,44 @@ class _MyCustomFormState extends State<MyCustomForm> {
                           ),
                           const SizedBox(height: 15),
                           // maps choose location
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.3,
-                            width: MediaQuery.of(context).size.width,
-                            child: OSMFlutter(
-                              onLocationChanged: (GeoPoint location) {
-                                setState(() {
-                                  _selectedLocation = location;
-                                });
-                              },
-                              controller: _mapController,
-                              osmOption: OSMOption(
-                                zoomOption: const ZoomOption(
-                                  initZoom: 8,
-                                  minZoomLevel: 3,
-                                  maxZoomLevel: 19,
-                                  stepZoom: 1.0,
-                                ),
-                                userLocationMarker: UserLocationMaker(
-                                  personMarker: const MarkerIcon(
-                                    icon: Icon(
-                                      Icons.location_history_rounded,
-                                      color: Colors.red,
-                                      size: 48,
-                                    ),
-                                  ),
-                                  directionArrowMarker: const MarkerIcon(
-                                    icon: Icon(
-                                      Icons.double_arrow,
-                                      size: 48,
-                                    ),
-                                  ),
-                                ),
-                                roadConfiguration: const RoadOption(
-                                  roadColor: Colors.yellowAccent,
-                                ),
-                              ),
-                            ),
-                          ),
+                          // SizedBox(
+                          //   height: MediaQuery.of(context).size.height * 0.3,
+                          //   width: MediaQuery.of(context).size.width,
+                          //   child: OSMFlutter(
+                          //     onLocationChanged: (GeoPoint location) {
+                          //       setState(() {
+                          //         _selectedLocation = location;
+                          //       });
+                          //     },
+                          //     controller: _mapController,
+                          //     osmOption: OSMOption(
+                          //       zoomOption: const ZoomOption(
+                          //         initZoom: 8,
+                          //         minZoomLevel: 3,
+                          //         maxZoomLevel: 19,
+                          //         stepZoom: 1.0,
+                          //       ),
+                          //       userLocationMarker: UserLocationMaker(
+                          //         personMarker: const MarkerIcon(
+                          //           icon: Icon(
+                          //             Icons.location_history_rounded,
+                          //             color: Colors.red,
+                          //             size: 48,
+                          //           ),
+                          //         ),
+                          //         directionArrowMarker: const MarkerIcon(
+                          //           icon: Icon(
+                          //             Icons.double_arrow,
+                          //             size: 48,
+                          //           ),
+                          //         ),
+                          //       ),
+                          //       roadConfiguration: const RoadOption(
+                          //         roadColor: Colors.yellowAccent,
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
 
                           // persian date picker
                           const SizedBox(height: 15),

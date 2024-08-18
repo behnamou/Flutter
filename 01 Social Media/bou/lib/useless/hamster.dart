@@ -127,7 +127,7 @@ class _HamsterPageState extends State<HamsterPage> {
     HamsterCard("Premarket Launch", 12, 16890, 80730365, "Specials"),
     HamsterCard("Hamster Kombat merch", 15, 276, 2176089, "Specials"),
     HamsterCard(
-        "TON + Hamster Kombat = Success", 11, 10520, 42813036, "Specials"),
+        "TON + Hamster Kombat = Success", 12, 11260, 80730365, "Specials"),
     HamsterCard("Consensus Piranha Pass", 15, 5240, 36268148, "Specials"),
     HamsterCard("Web3 academy launch", 16, 4430, 18287997, "Specials"),
     HamsterCard("YouTube Gold Button", 17, 869, 10002783, "Specials"),
