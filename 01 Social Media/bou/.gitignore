@@ -2,12 +2,12 @@
 # See https://github.com/flutter/flutter/issues/128635 for more context.
 
 
-*.png
-*.jpg
-*.jpeg
 *.PNG
+*.png
 *.JPG
+*.jpg
 *.JPEG
+*.jpeg
 
 
 
