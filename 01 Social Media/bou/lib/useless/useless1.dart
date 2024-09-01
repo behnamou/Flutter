@@ -1,10 +1,11 @@
 import 'dart:io';
 import 'package:auto_route/auto_route.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
-// import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 import 'package:persian_datetime_picker/persian_datetime_picker.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
@@ -61,6 +62,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
   bool _isFormValid = false;
   final MapController _mapController = MapController();
   LatLng? _selectedLocation;
+  LatLng? _currentLocation;
 
   void _updateFormValidState() {
     setState(() {
@@ -169,6 +171,40 @@ class _MyCustomFormState extends State<MyCustomForm> {
       await imageFile.writeAsBytes(await _image!.readAsBytes());
       print('Image saved to file: ${imageFile.path}');
     }
+  }
+
+  Future<void> _getCurrentLocation() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Location services are disabled.')),
+      );
+      return;
+    }
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission != LocationPermission.whileInUse &&
+          permission != LocationPermission.always) {
+        // اگر دسترسی به موقعیت جغرافیایی داده نشود، پیام خطا نمایش دهید
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Location permissions are denied')),
+        );
+        return;
+      }
+    }
+    Position position = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
+
+    setState(() {
+      _currentLocation = LatLng(position.latitude, position.longitude);
+      _selectedLocation = _currentLocation;
+      _mapController.move(_currentLocation!, 13);
+    });
   }
 
   @override
@@ -368,7 +404,9 @@ class _MyCustomFormState extends State<MyCustomForm> {
                                           _updateFormValidState();
                                         },
                                         icon: const Icon(
-                                          Icons.clear,
+                                          // Icons.clear,
+                                          CupertinoIcons.clear_circled,
+                                          color: Colors.black,
                                         ),
                                       ),
                                     ),
@@ -455,38 +493,63 @@ class _MyCustomFormState extends State<MyCustomForm> {
                           ),
                           const SizedBox(height: 15),
                           // maps choose location
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.4,
-                            width: MediaQuery.of(context).size.width,
-                            child: FlutterMap(
-                              mapController: _mapController,
-                              options: MapOptions(
-                                initialCenter: const LatLng(35.6892, 51.3890),
-                                initialZoom: 13,
-                                onTap: (tapPosition, latLng) {
-                                  setState(() {
-                                    _selectedLocation = latLng;
-                                  });
-                                },
-                              ),
-                              children: [
-                                TileLayer(
-                                  urlTemplate:
-                                      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                                  subdomains: const ['a', 'b', 'c'],
+                          Stack(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(
+                                    width: 1,
+                                    color: const Color(0xffEEF2F3),
+                                  ),
                                 ),
-                                if (_selectedLocation != null)
-                                  MarkerLayer(markers: [
-                                    Marker(
-                                        point: _selectedLocation!,
-                                        child: const Icon(
-                                          Icons.location_pin,
-                                          color: Colors.red,
-                                        ))
-                                  ])
-                              ],
-                            ),
+                                height:
+                                    MediaQuery.of(context).size.height * 0.4,
+                                width: MediaQuery.of(context).size.width,
+                                child: FlutterMap(
+                                  mapController: _mapController,
+                                  options: MapOptions(
+                                    initialCenter:
+                                        const LatLng(35.6892, 51.3890),
+                                    initialZoom: 13,
+                                    onTap: (tapPosition, latLng) {
+                                      setState(() {
+                                        _selectedLocation = latLng;
+                                      });
+                                    },
+                                  ),
+                                  children: [
+                                    TileLayer(
+                                      urlTemplate:
+                                          'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                                      subdomains: const ['a', 'b', 'c'],
+                                    ),
+                                    if (_selectedLocation != null)
+                                      MarkerLayer(
+                                        markers: [
+                                          Marker(
+                                            point: _selectedLocation!,
+                                            child: const Icon(
+                                              CupertinoIcons.map_pin,
+                                              color: Colors.red,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                  ],
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 20,
+                                right: 20,
+                                child: FloatingActionButton(
+                                  onPressed: _getCurrentLocation,
+                                  child: const Icon(Icons.my_location),
+                                ),
+                              ),
+                            ],
                           ),
+
                           // persian date picker
                           const SizedBox(height: 15),
                           SizedBox(

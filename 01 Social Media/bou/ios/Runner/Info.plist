@@ -53,7 +53,5 @@
 	<string>Need access to your location to show it on the map</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Need access to your location to show it on the map</string>
-
-
 </dict>
 </plist>

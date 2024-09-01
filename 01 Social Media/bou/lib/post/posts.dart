@@ -5,6 +5,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bou/router/app_router.gr.dart';
 import 'package:bou/common/separator_line.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/services.dart';
 
@@ -27,7 +28,7 @@ class MyPosts extends StatelessWidget {
               shape: const CircleBorder(
                   side: BorderSide(width: 0, color: Color(0xFF1B95E0))),
               child: const Icon(
-                Icons.add,
+                CupertinoIcons.add,
                 color: Colors.white,
               ),
             ),
@@ -277,14 +278,16 @@ class PostWidget extends StatelessWidget {
               child: const Row(
                 children: [
                   Icon(
-                    Icons.favorite_border,
+                    CupertinoIcons.heart,
+                    // Icons.favorite_border,
                     color: Color(0xFF536471),
                   ),
                   SizedBox(
                     width: 20,
                   ),
                   Icon(
-                    Icons.messenger_outline_sharp,
+                    CupertinoIcons.bubble_left,
+                    // Icons.messenger_outline_sharp,
                     color: Color(0xFF536471),
                   ),
                 ],

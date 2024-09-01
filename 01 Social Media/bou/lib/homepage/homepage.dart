@@ -5,6 +5,7 @@ import 'package:bou/main.dart';
 import 'package:bou/post/posts.dart';
 import 'package:bou/common/separator_line.dart';
 import 'package:bou/router/app_router.gr.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
@@ -59,7 +60,11 @@ class MyHomePage extends StatelessWidget {
                     onPressed: () => {
                       AuthProvider.authProvider.logout(),
                     },
-                    icon: const Icon(Icons.exit_to_app_rounded),
+                    // icon: const Icon(Icons.exit_to_app_rounded),
+                    icon: const Icon(
+                      CupertinoIcons.square_arrow_right,
+                      color: Colors.black,
+                    ),
                   ),
                 ],
               ),

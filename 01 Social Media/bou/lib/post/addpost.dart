@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bou/common/separator_line.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
@@ -53,7 +54,8 @@ class _AddPostBody extends StatelessWidget {
               child: IconButton(
                   onPressed: () => {},
                   icon: const Icon(
-                    Icons.image,
+                    // Icons.image,
+                    CupertinoIcons.photo_on_rectangle,
                     color: Colors.black,
                   )),
             ),

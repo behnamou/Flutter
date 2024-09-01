@@ -3,6 +3,7 @@ import "package:bou/router/app_router.gr.dart";
 import "package:bou/common/footer.dart";
 import "package:bou/post/posts.dart";
 import "package:bou/common/separator_line.dart";
+import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
 
 @RoutePage()
@@ -107,7 +108,8 @@ class _NotificationHeader extends StatelessWidget {
             IconButton(
               onPressed: () => {context.router.push(const EditProfileRoute())},
               icon: const Icon(
-                Icons.settings_outlined,
+                // Icons.settings_outlined,
+                CupertinoIcons.settings,
                 color: Colors.black,
               ),
             ),

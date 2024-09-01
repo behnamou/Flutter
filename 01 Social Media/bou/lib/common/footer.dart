@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bou/router/app_router.gr.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MyFooter extends StatelessWidget {
@@ -16,25 +17,27 @@ class MyFooter extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             IconButton(
-                onPressed: () {
-                  context.router.navigate(const MyHomeRoute());
-                },
-                icon: const Icon(
-                  Icons.home,
-                  color: Colors.black,
-                )),
+              onPressed: () {
+                context.router.navigate(const MyHomeRoute());
+              },
+              icon: const Icon(
+                CupertinoIcons.home,
+                color: Colors.black,
+              ),
+            ),
             IconButton(
-                onPressed: () => {context.router.push(const Useless1Route())},
-                icon: const Icon(
-                  Icons.all_inclusive_rounded,
-                  color: Colors.black,
-                )),
+              onPressed: () => {context.router.push(const Useless1Route())},
+              icon: const Icon(
+                CupertinoIcons.car_detailed,
+                color: Colors.black,
+              ),
+            ),
             IconButton(
                 onPressed: () {
                   context.router.push(const MySearchRoute());
                 },
                 icon: const Icon(
-                  Icons.search,
+                  CupertinoIcons.search,
                   color: Colors.black,
                 )),
           ],

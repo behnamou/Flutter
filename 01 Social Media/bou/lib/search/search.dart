@@ -3,6 +3,7 @@ import 'package:bou/router/app_router.gr.dart';
 import 'package:bou/common/footer.dart';
 import 'package:bou/post/posts.dart';
 import 'package:bou/common/separator_line.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
@@ -85,7 +86,8 @@ class _SearchBarState extends State<_SearchBar> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
-                              Icons.search,
+                              // Icons.search,
+                              CupertinoIcons.search,
                               color: Color(0xff536471),
                             ),
                             SizedBox(
@@ -115,7 +117,8 @@ class _SearchBarState extends State<_SearchBar> {
                     child: IconButton(
                       onPressed: () =>
                           context.router.push(const EditProfileRoute()),
-                      icon: const Icon(Icons.settings_outlined,
+                      // icon: const Icon(Icons.settings_outlined,
+                      icon: const Icon(CupertinoIcons.settings,
                           color: Colors.black),
                     ),
                   ),
@@ -146,7 +149,8 @@ class _SearchBarState extends State<_SearchBar> {
                               BorderSide(width: 0, color: Color(0xffEEF2F3)),
                         ),
                         hintText: "Search ...",
-                        prefixIcon: const Icon(Icons.search),
+                        // prefixIcon: const Icon(Icons.search),
+                        prefixIcon: const Icon(CupertinoIcons.search),
                         prefixIconColor: const Color(0xff536471),
                         hintStyle: const TextStyle(
                             fontFamily: 'vazir',

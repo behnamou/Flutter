@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bou/common/footer.dart';
 import 'package:bou/post/posts.dart';
 import 'package:bou/common/separator_line.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
@@ -44,7 +45,8 @@ class _MyOtherAccountsProfile extends StatelessWidget {
               onPressed: () => {
                 context.router.back(),
               },
-              icon: const Icon(Icons.arrow_back_ios_new_rounded),
+              // icon: const Icon(Icons.arrow_back_ios_new_rounded),
+              icon: const Icon(CupertinoIcons.back),
               style: const ButtonStyle(
                   iconColor: MaterialStatePropertyAll(Color(0xFF536471))),
             ),
@@ -167,7 +169,8 @@ class _MyOtherAccountsProfile extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Icon(
-                            Icons.location_on_outlined,
+                            CupertinoIcons.map_pin_ellipse,
+                            // Icons.location_on_outlined,
                             size: 18,
                             color: Color(0xFF536471),
                           ),

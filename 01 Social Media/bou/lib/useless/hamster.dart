@@ -14,14 +14,14 @@ class _HamsterPageState extends State<HamsterPage> {
     // PR&Team
     HamsterCard("CEO", 17, 316, 4001113, "PR&Team"),
     HamsterCard("Marketing", 16, 207, 1662545, "PR&Team"),
-    HamsterCard("IT Team", 16, 709, 3325090, "PR&Team"),
+    HamsterCard("IT Team", 17, 758, 8002226, "PR&Team"),
     HamsterCard("Support team", 16, 207, 1246909, "PR&Team"),
     HamsterCard("HamsterBook", 17, 221, 2000557, "PR&Team"),
     HamsterCard("HamsterTube", 17, 284, 2400668, "PR&Team"),
     HamsterCard("X", 17, 253, 2200612, "PR&Team"),
     HamsterCard("Cointelegraph", 18, 135, 3538715, "PR&Team"),
     HamsterCard("HamsterGram", 16, 148, 831273, "PR&Team"),
-    HamsterCard("TikTok", 16, 295, 1246909, "PR&Team"),
+    HamsterCard("TikTok", 17, 316, 3000835, "PR&Team"),
     HamsterCard("Coindesk", 16, 236, 1662545, "PR&Team"),
     HamsterCard("Influencers", 17, 853, 10002783, "PR&Team"),
     HamsterCard("Partnership program", 17, 221, 2000557, "PR&Team"),
@@ -32,10 +32,10 @@ class _HamsterPageState extends State<HamsterPage> {
     HamsterCard("Security team", 17, 632, 4001113, "PR&Team"),
     HamsterCard("QA team", 17, 600, 5101419, "PR&Team"),
     HamsterCard("Antihacking shield", 16, 325, 3325090, "PR&Team"),
-    HamsterCard("Risk management team", 16, 782, 3325090, "PR&Team"),
+    HamsterCard("Risk management team", 17, 837, 8002226, "PR&Team"),
     HamsterCard("Security Audition", 16, 295, 4987636, "PR&Team"),
     HamsterCard("Anonymous transactions ban", 18, 1010, 4987636, "PR&Team"),
-    HamsterCard("Blocking suspicious accounts", 16, 472, 2078181, "PR&Team"),
+    HamsterCard("Blocking suspicious accounts", 17, 505, 5001392, "PR&Team"),
     HamsterCard("Tokenomics expert", 17, 1580, 20005566, "PR&Team"),
     HamsterCard("Consensus Explorer pass", 16, 4430, 41563630, "PR&Team"),
     HamsterCard("VC labs", 15, 1380, 11243126, "PR&Team"),
@@ -49,12 +49,12 @@ class _HamsterPageState extends State<HamsterPage> {
     HamsterCard("Fantokens", 16, 2810, 16625452, "Markets"),
     HamsterCard("Staking", 17, 1900, 14003896, "Markets"),
     HamsterCard("BTC pairs", 17, 126, 1000278, "Markets"),
-    HamsterCard("ETH pairs", 16, 118, 498764, "Markets"),
+    HamsterCard("ETH pairs", 17, 126, 1200334, "Markets"),
     HamsterCard("Top 10 cmc pairs", 16, 236, 1662545, "Markets"),
     HamsterCard("GameFi tokens", 17, 221, 2000557, "Markets"),
     HamsterCard("Defi2.0 tokens", 16, 118, 831273, "Markets"),
     HamsterCard("SocialFi Tokens", 16, 148, 831273, "Markets"),
-    HamsterCard("Meme Coins", 15, 303, 1450726, "Markets"),
+    HamsterCard("Meme Coins", 16, 325, 3325090, "Markets"),
     HamsterCard("Shit coins", 17, 1860, 20005566, "Markets"),
     HamsterCard("Margin trading x10", 17, 869, 10002783, "Markets"),
     HamsterCard("Margin trading x20", 17, 1110, 10002783, "Markets"),
@@ -70,9 +70,9 @@ class _HamsterPageState extends State<HamsterPage> {
     HamsterCard("Trading bots", 16, 576, 3491345, "Markets"),
     HamsterCard("LayerZero Listing", 16, 2660, 16625452, "Markets"),
     // Legal
-    HamsterCard("KYC", 17, 32, 400111, "Legal"),
-    HamsterCard("KYB", 16, 177, 831273, "Legal"),
-    HamsterCard("Legal opinion", 15, 166, 725363, "Legal"),
+    HamsterCard("KYC", 24, 51, 733386479, "Legal"),
+    HamsterCard("KYB", 17, 190, 2000557, "Legal"),
+    HamsterCard("Legal opinion", 16, 177, 1662545, "Legal"),
     HamsterCard("SEC reansparancy", 16, 177, 1995054, "Legal"),
     HamsterCard("Anti money loundering", 16, 827, 4987636, "Legal"),
     HamsterCard("Licence UAE", 17, 1770, 20005566, "Legal"),
@@ -83,7 +83,7 @@ class _HamsterPageState extends State<HamsterPage> {
     HamsterCard("Licence Nigeria", 17, 537, 6001670, "Legal"),
     HamsterCard("Licence Japan", 15, 7170, 36268148, "Legal"),
     HamsterCard("Licence Ethiopia", 15, 4970, 25387704, "Legal"),
-    HamsterCard("Licence India", 15, 6900, 32641333, "Legal"),
+    HamsterCard("Licence India", 16, 7380, 74814534, "Legal"),
     HamsterCard("Licence Bangladesh", 15, 9660, 50775407, "Legal"),
     HamsterCard("Licence Indonesia", 15, 13800, 72536296, "Legal"),
     HamsterCard("Licence Vietnam", 15, 11040, 61655852, "Legal"),
@@ -92,8 +92,8 @@ class _HamsterPageState extends State<HamsterPage> {
     // Web3
     HamsterCard("DEX", 15, 8280, 54402222, "Web3"),
     HamsterCard("Oracle", 15, 2210, 12693852, "Web3"),
-    HamsterCard("Vesting Smartcontracts", 14, 3090, 13624182, "Web3"),
-    HamsterCard("Launchpad", 14, 7740, 31568227, "Web3"),
+    HamsterCard("Vesting Smartcontracts", 15, 3310, 29739881, "Web3"),
+    HamsterCard("Launchpad", 15, 8280, 68909481, "Web3"),
     HamsterCard("NFT Marketplace", 14, 5160, 25919176, "Web3"),
     HamsterCard("Grant for Developers", 15, 11040, 72536296, "Web3"),
     HamsterCard("NFT Metaverse", 11, 4210, 21406518, "Web3"),
@@ -102,7 +102,19 @@ class _HamsterPageState extends State<HamsterPage> {
     HamsterCard("Market Making", 15, 1660, 12331170, "Web3"),
     HamsterCard("Web3 Advertising Platform", 15, 1100, 9429718, "Web3"),
     // Specials
+    HamsterCard("Setting up business processes", 10, 1570, 405278, "Specials"),
+    HamsterCard("Speaking to employees", 15, 1100, 7253630, "Specials"),
+    HamsterCard("Investments in farming", 16, 11810, 99752711, "Specials"),
+    HamsterCard("Collection of vintage cars", 15, 5520, 39894963, "Specials"),
+    HamsterCard("Launching a rocket to Mars", 14, 7740, 49844569, "Specials"),
+    HamsterCard("Electric car production", 14, 5160, 24922285, "Specials"),
+    HamsterCard("Speaking on a TV show", 15, 2480, 14507259, "Specials"),
+    HamsterCard("Negotiations with partners", 15, 5520, 32641333, "Specials"),
+    HamsterCard(
+        "Company developement planning", 15, 2210, 10880444, "Specials"),
+    HamsterCard("Communication with a mentor", 15, 2760, 18134074, "Specials"),
     HamsterCard("Hmaster with friends", 16, 886, 8312726, "Specials"),
+    HamsterCard("Hamster helps whales", 17, 6320, 124034510, "Specials"),
     HamsterCard("Vipassana hamster", 16, 1770, 14962907, "Specials"),
     HamsterCard("University hamster", 15, 3040, 16683348, "Specials"),
     HamsterCard("Gym hamster", 15, 1380, 8704356, "Specials"),
@@ -117,11 +129,11 @@ class _HamsterPageState extends State<HamsterPage> {
     HamsterCard("HamsterStore launch", 15, 13800, 68909481, "Specials"),
     HamsterCard("HamsterWatch for soulmate", 8, 1720, 8557150, "Specials"),
     HamsterCard("Call for BTC to rise", 8, 8590, 42785751, "Specials"),
-    HamsterCard("Business jet", 1, 3210, 13230000, "Specials"),
+    HamsterCard("Business jet", 3, 3680, 18615939, "Specials"),
     HamsterCard("CX Hub Istanbul", 15, 8280, 39894963, "Specials"),
     HamsterCard("Hamster break records", 12, 6190, 40365183, "Specials"),
     HamsterCard("X Network 10 Million", 16, 1180, 11637816, "Specials"),
-    HamsterCard("Hamster Green energy", 16, 5900, 28263268, "Specials"),
+    HamsterCard("Hamster Green energy", 17, 6320, 68018925, "Specials"),
     HamsterCard("YouTube 25 Million", 16, 6200, 29925813, "Specials"),
     HamsterCard("TG Leaders", 17, 7270, 88024491, "Specials"),
     HamsterCard("Premarket Launch", 12, 16890, 80730365, "Specials"),
@@ -129,7 +141,7 @@ class _HamsterPageState extends State<HamsterPage> {
     HamsterCard(
         "TON + Hamster Kombat = Success", 12, 11260, 80730365, "Specials"),
     HamsterCard("Consensus Piranha Pass", 15, 5240, 36268148, "Specials"),
-    HamsterCard("Web3 academy launch", 16, 4430, 18287997, "Specials"),
+    HamsterCard("Web3 academy launch", 17, 4740, 44012246, "Specials"),
     HamsterCard("YouTube Gold Button", 17, 869, 10002783, "Specials"),
     HamsterCard("Hamster YouTube Channel", 18, 845, 15165921, "Specials"),
     HamsterCard("Bitcoin Pizza day", 17, 316, 4001113, "Specials"),
@@ -157,7 +169,7 @@ class _HamsterPageState extends State<HamsterPage> {
             : next);
   }
 
-  double ratioThreshold = 1000;
+  double ratioThreshold = 1;
   final TextEditingController _thresholdController = TextEditingController();
 
   @override
@@ -207,12 +219,14 @@ class _HamsterPageState extends State<HamsterPage> {
                 Column(
                   children: profitableCards.map((card) {
                     return Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SeparatorLineWidget(),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 4.0),
                           child: Text(
-                            '${card.name}: Level \n${card.level} Earnings per Hour: ${formatNumber(card.earningsPerHour)} Cost: ${formatNumber(card.cost)} \nGroup: ${card.category}',
+                            "$card\nRatio: ${card.costToEarningsRatio()}",
                             style: const TextStyle(
                                 fontSize: 16, fontFamily: 'sfpro'),
                           ),
@@ -223,7 +237,35 @@ class _HamsterPageState extends State<HamsterPage> {
                 ),
                 const SeparatorLineWidget(),
                 const SizedBox(height: 20),
-                Text("${_myCard}\nRatio: ${_myCard.costToEarningsRatio()}"),
+                Container(
+                  decoration: BoxDecoration(
+                    color: const Color(0xffEEF2F3),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  padding: const EdgeInsets.all(16),
+                  width: MediaQuery.of(context).size.width,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Best card to buy :",
+                        style: TextStyle(
+                            color: Color(0xff536471),
+                            fontFamily: 'sfpro',
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      Text(
+                        "$_myCard\nRatio: ${_myCard.costToEarningsRatio()}",
+                        style: const TextStyle(
+                            color: Color(0xff536471),
+                            fontFamily: 'sfpro',
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),

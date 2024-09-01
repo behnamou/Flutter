@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bou/router/app_router.gr.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MyHeader extends StatelessWidget {
@@ -20,7 +21,8 @@ class MyHeader extends StatelessWidget {
                   Scaffold.of(context).openDrawer();
                 },
                 icon: const Icon(
-                  Icons.menu_rounded,
+                  // Icons.menu_rounded,
+                  CupertinoIcons.ellipsis_vertical,
                   color: Colors.black,
                 )),
             TextButton(
@@ -40,7 +42,8 @@ class MyHeader extends StatelessWidget {
               onPressed: () =>
                   {context.router.push(const MyNotificationsRoute())},
               icon: const Icon(
-                Icons.notifications,
+                CupertinoIcons.bell_fill,
+                // Icons.notifications,
                 color: Colors.black,
               ),
             ),
