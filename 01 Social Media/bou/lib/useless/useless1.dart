@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:auto_route/auto_route.dart';
+import 'package:bou/router/app_router.gr.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +57,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
   final _nameController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _isChecked = false;
-  String? _selectedCity = "Shiraz";
+  String? _selectedCityRadio = "Shiraz";
   String? _selectedBirthday;
   File? _image;
   String? _numberPicked;
@@ -63,12 +65,23 @@ class _MyCustomFormState extends State<MyCustomForm> {
   final MapController _mapController = MapController();
   LatLng? _selectedLocation;
   LatLng? _currentLocation;
+  StreamController<LatLng> _locationStreamController =
+      StreamController<LatLng>();
+  String? _selectedProvince;
+  String? _selectedCity;
+
+  Stream<LatLng> get locationStream => _locationStreamController.stream;
+
+  void _getLocationInBackground() async {
+    _currentLocation = await _getCurrentLocationFromService();
+    _locationStreamController.add(_currentLocation!);
+  }
 
   void _updateFormValidState() {
     setState(() {
       _isFormValid = _nameController.text.isNotEmpty &&
           _passwordController.text.isNotEmpty &&
-          _selectedCity != null &&
+          _selectedCityRadio != null &&
           _selectedBirthday != null &&
           _image != null &&
           _numberPicked != null &&
@@ -76,11 +89,30 @@ class _MyCustomFormState extends State<MyCustomForm> {
     });
   }
 
+  final Map<String, List<String>> _provinceCityMap = {
+    'Tehran': ['Tehran', 'Karaj', 'Shemiran'],
+    'Fars': ['Shiraz', 'Marvdasht', 'Fasa'],
+    'Mazandaran': ['Sari', 'Amol', 'Babol'],
+  };
+
   @override
   void dispose() {
     _nameController.dispose();
     _passwordController.dispose();
+    _locationStreamController.close();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getLocationInBackground();
+  }
+
+  Future<LatLng> _getCurrentLocationFromService() async {
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    return LatLng(position.latitude, position.longitude);
   }
 
   Future<void> _pickImage() async {
@@ -144,7 +176,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
         password: _passwordController.text,
         num: _numberPicked!,
         birthday: _selectedBirthday!,
-        city: _selectedCity!,
+        city: _selectedCityRadio!,
         imageURL: _image!.path,
       );
 
@@ -196,12 +228,12 @@ class _MyCustomFormState extends State<MyCustomForm> {
         return;
       }
     }
-    Position position = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
-    );
+    // Position position = await Geolocator.getCurrentPosition(
+    //   desiredAccuracy: LocationAccuracy.high,
+    // );
 
     setState(() {
-      _currentLocation = LatLng(position.latitude, position.longitude);
+      // _currentLocation = LatLng(position.latitude, position.longitude);
       _selectedLocation = _currentLocation;
       _mapController.move(_currentLocation!, 13);
     });
@@ -445,10 +477,10 @@ class _MyCustomFormState extends State<MyCustomForm> {
                                   ),
                                   leading: Radio<String>(
                                     value: 'Shiraz',
-                                    groupValue: _selectedCity,
+                                    groupValue: _selectedCityRadio,
                                     onChanged: (String? value) {
                                       setState(() {
-                                        _selectedCity = value;
+                                        _selectedCityRadio = value;
                                       });
                                     },
                                   ),
@@ -460,10 +492,10 @@ class _MyCustomFormState extends State<MyCustomForm> {
                                   ),
                                   leading: Radio<String>(
                                     value: 'Tehran',
-                                    groupValue: _selectedCity,
+                                    groupValue: _selectedCityRadio,
                                     onChanged: (String? value) {
                                       setState(() {
-                                        _selectedCity = value;
+                                        _selectedCityRadio = value;
                                       });
                                     },
                                   ),
@@ -475,17 +507,17 @@ class _MyCustomFormState extends State<MyCustomForm> {
                                   ),
                                   leading: Radio<String>(
                                     value: 'Yazd',
-                                    groupValue: _selectedCity,
+                                    groupValue: _selectedCityRadio,
                                     onChanged: (String? value) {
                                       setState(() {
-                                        _selectedCity = value;
+                                        _selectedCityRadio = value;
                                       });
                                     },
                                   ),
                                 ),
                                 const SizedBox(height: 20),
                                 Text(
-                                  'Selected City: $_selectedCity',
+                                  'Selected City: $_selectedCityRadio',
                                   style: myTextStyle,
                                 ),
                               ],
@@ -495,14 +527,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
                           // maps choose location
                           Stack(
                             children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                    width: 1,
-                                    color: const Color(0xffEEF2F3),
-                                  ),
-                                ),
+                              SizedBox(
                                 height:
                                     MediaQuery.of(context).size.height * 0.4,
                                 width: MediaQuery.of(context).size.width,
@@ -528,9 +553,11 @@ class _MyCustomFormState extends State<MyCustomForm> {
                                       MarkerLayer(
                                         markers: [
                                           Marker(
+                                            rotate: true,
                                             point: _selectedLocation!,
                                             child: const Icon(
                                               CupertinoIcons.map_pin,
+                                              size: 30,
                                               color: Colors.red,
                                             ),
                                           ),
@@ -543,15 +570,125 @@ class _MyCustomFormState extends State<MyCustomForm> {
                                 bottom: 20,
                                 right: 20,
                                 child: FloatingActionButton(
+                                  backgroundColor: const Color(0xffEEF2F3),
                                   onPressed: _getCurrentLocation,
-                                  child: const Icon(Icons.my_location),
+                                  child: const Icon(
+                                    Icons.my_location,
+                                    color: Colors.black,
+                                  ),
                                 ),
                               ),
                             ],
                           ),
-
-                          // persian date picker
                           const SizedBox(height: 15),
+                          // cascade pick city
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                height: 50,
+                                padding:
+                                    const EdgeInsets.only(left: 10, right: 10),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: const Color(0xffEEF2F3),
+                                    border: Border.all(
+                                        width: 1,
+                                        color: const Color(0xffEEF2F3))),
+                                child: DropdownButton<String>(
+                                  isExpanded: true,
+                                  borderRadius: BorderRadius.circular(10),
+                                  dropdownColor: const Color(0xffEEF2F3),
+                                  hint: Text(
+                                    'Select Province',
+                                    style: myTextStyle,
+                                  ),
+                                  value: _selectedProvince,
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      _selectedProvince = newValue;
+                                      _selectedCity =
+                                          null; // Reset the selected city
+                                    });
+                                  },
+                                  items: _provinceCityMap.keys
+                                      .map((String province) {
+                                    return DropdownMenuItem<String>(
+                                      value: province,
+                                      child: Text(
+                                        province,
+                                        style: myTextStyle,
+                                      ),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Container(
+                                height: 50,
+                                padding:
+                                    const EdgeInsets.only(left: 10, right: 10),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: const Color(0xffEEF2F3),
+                                    border: Border.all(
+                                        width: 1,
+                                        color: const Color(0xffEEF2F3))),
+                                child: DropdownButton<String>(
+                                  isExpanded: true,
+                                  dropdownColor: const Color(0xffEEF2F3),
+                                  borderRadius: BorderRadius.circular(10),
+                                  hint: Text(
+                                    'Select City',
+                                    style: myTextStyle,
+                                  ),
+                                  value: _selectedCity,
+                                  onChanged: _selectedProvince != null
+                                      ? (String? newValue) {
+                                          setState(() {
+                                            _selectedCity = newValue;
+                                          });
+                                        }
+                                      : null,
+                                  items: _selectedProvince != null
+                                      ? _provinceCityMap[_selectedProvince]!
+                                          .map((String city) {
+                                          return DropdownMenuItem<String>(
+                                            value: city,
+                                            child: Text(
+                                              city,
+                                              style: myTextStyle,
+                                            ),
+                                          );
+                                        }).toList()
+                                      : [],
+                                ),
+                              ),
+                              const SizedBox(height: 20),
+                              if (_selectedProvince != null &&
+                                  _selectedCity != null)
+                                SizedBox(
+                                  child: Container(
+                                    alignment: Alignment.centerLeft,
+                                    height: 50,
+                                    width: double.infinity,
+                                    padding: const EdgeInsets.all(10),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: const Color(0xffEEF2F3),
+                                        border: Border.all(
+                                            width: 1,
+                                            color: const Color(0xffEEF2F3))),
+                                    child: Text(
+                                      'Selected Province: $_selectedProvince, City: $_selectedCity',
+                                      style: myTextStyle,
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          ),
+                          const SizedBox(height: 15),
+                          // persian date picker
                           SizedBox(
                             width: double.infinity,
                             height: 50,
@@ -606,6 +743,32 @@ class _MyCustomFormState extends State<MyCustomForm> {
                               },
                             ),
                           ),
+                          const SizedBox(height: 15),
+                          // barcode reader
+                          SizedBox(
+                            width: double.infinity,
+                            height: 50,
+                            child: ElevatedButton(
+                              style: const ButtonStyle(
+                                  overlayColor: WidgetStatePropertyAll(
+                                      Color.fromARGB(255, 178, 178, 178)),
+                                  padding: WidgetStatePropertyAll(
+                                      EdgeInsets.all(10)),
+                                  alignment: Alignment.centerLeft,
+                                  shape: WidgetStatePropertyAll(
+                                      RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)))),
+                                  backgroundColor: WidgetStatePropertyAll(
+                                      Color(0xffEEF2F3))),
+                              onPressed: () {
+                                AutoRouter.of(context)
+                                    .push(const QRViewExample());
+                              },
+                              child: Text('Scan QR code', style: myTextStyle),
+                            ),
+                          ),
+                          const SizedBox(height: 15),
                           // checkBox
                           Row(
                             children: [
@@ -640,6 +803,8 @@ class _MyCustomFormState extends State<MyCustomForm> {
               children: [
                 ElevatedButton(
                   style: const ButtonStyle(
+                    elevation: WidgetStatePropertyAll(10),
+                    shadowColor: WidgetStatePropertyAll(Colors.black),
                     overlayColor: WidgetStatePropertyAll(Color(0xffEEF2F3)),
                     shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                         side: BorderSide(color: Color(0xff536471)),
@@ -672,7 +837,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
                             color: Colors.black,
                             fontSize: 14,
                           ),
-                          actionsAlignment: MainAxisAlignment.center,
+                          actionsAlignment: MainAxisAlignment.spaceAround,
                           actionsPadding: const EdgeInsets.all(10),
                           actions: <Widget>[
                             TextButton(
@@ -724,6 +889,8 @@ class _MyCustomFormState extends State<MyCustomForm> {
                 ElevatedButton(
                   onPressed: _isFormValid ? _submitForm : null,
                   style: const ButtonStyle(
+                    elevation: WidgetStatePropertyAll(10),
+                    shadowColor: WidgetStatePropertyAll(Colors.blue),
                     overlayColor: WidgetStatePropertyAll(Color(0xffEEF2F3)),
                     shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                         side: BorderSide(color: Color(0xff536471)),

@@ -1,13 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bou/main.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 @RoutePage()
 class LoginPage extends StatelessWidget {
   final void Function(bool result) onLoginResult;
 
-  LoginPage({super.key, required this.onLoginResult});
+  const LoginPage({super.key, required this.onLoginResult});
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +51,7 @@ var _adminAccount = _AccountsLoginInfo(username: 'admin', password: 'admin');
 class _LoginPage extends StatefulWidget {
   final void Function(bool result) onLoginResult;
 
-  _LoginPage(this.onLoginResult);
+  const _LoginPage(this.onLoginResult);
 
   @override
   State<_LoginPage> createState() => _LoginPageState();
@@ -270,16 +269,16 @@ class _LoginPageState extends State<_LoginPage> {
                     ),
                     ElevatedButton(
                       style: ButtonStyle(
-                        fixedSize: MaterialStateProperty.all(
+                        fixedSize: WidgetStateProperty.all(
                             const Size(double.maxFinite, 50)),
-                        shape: MaterialStateProperty.all(
+                        shape: WidgetStateProperty.all(
                             const RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)))),
                         foregroundColor:
-                            MaterialStateProperty.all(Colors.white),
+                            WidgetStateProperty.all(Colors.white),
                         backgroundColor:
-                            MaterialStateProperty.all(const Color(0xFF1B95E0)),
+                            WidgetStateProperty.all(const Color(0xFF1B95E0)),
                       ),
                       onPressed: _loginSubmit,
                       child: const Text("Log In"),

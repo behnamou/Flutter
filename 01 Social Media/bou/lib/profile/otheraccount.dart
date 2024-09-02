@@ -28,7 +28,7 @@ class OtherAccountsPage extends StatelessWidget {
 }
 
 class _MyOtherAccountsProfile extends StatelessWidget {
-  const _MyOtherAccountsProfile({super.key});
+  const _MyOtherAccountsProfile();
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class _MyOtherAccountsProfile extends StatelessWidget {
               // icon: const Icon(Icons.arrow_back_ios_new_rounded),
               icon: const Icon(CupertinoIcons.back),
               style: const ButtonStyle(
-                  iconColor: MaterialStatePropertyAll(Color(0xFF536471))),
+                  iconColor: WidgetStatePropertyAll(Color(0xFF536471))),
             ),
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: false,

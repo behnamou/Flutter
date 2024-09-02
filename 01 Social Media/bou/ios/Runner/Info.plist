@@ -53,5 +53,8 @@
 	<string>Need access to your location to show it on the map</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Need access to your location to show it on the map</string>
+	<key>NSCameraUsageDescription</key>
+	<string>We need access to the camera for scanning QR codes and barcodes.</string>
+
 </dict>
 </plist>

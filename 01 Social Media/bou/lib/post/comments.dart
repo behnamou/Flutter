@@ -30,9 +30,9 @@ class MyCommentsPage extends StatelessWidget {
                         onPressed: null,
                         style: ButtonStyle(
                             backgroundColor:
-                                MaterialStatePropertyAll(Color(0xFF1C9AEF)),
+                                WidgetStatePropertyAll(Color(0xFF1C9AEF)),
                             foregroundColor:
-                                MaterialStatePropertyAll(Colors.white)),
+                                WidgetStatePropertyAll(Colors.white)),
                         child: Text('Post'),
                       ),
                     ],
@@ -88,8 +88,8 @@ class WritePost extends StatelessWidget {
                     onPressed: null,
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStatePropertyAll(Color(0xFF1C9AEF)),
-                      foregroundColor: MaterialStatePropertyAll(Colors.white),
+                          WidgetStatePropertyAll(Color(0xFF1C9AEF)),
+                      foregroundColor: WidgetStatePropertyAll(Colors.white),
                     ),
                     child: Text('Post')),
               ],

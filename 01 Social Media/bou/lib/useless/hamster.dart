@@ -5,6 +5,8 @@ import 'package:intl/intl.dart';
 
 @RoutePage()
 class HamsterPage extends StatefulWidget {
+  const HamsterPage({super.key});
+
   @override
   _HamsterPageState createState() => _HamsterPageState();
 }
@@ -180,7 +182,7 @@ class _HamsterPageState extends State<HamsterPage> {
 
   @override
   Widget build(BuildContext context) {
-    final _myCard = findMostProfitableCard(cards);
+    final myCard = findMostProfitableCard(cards);
     // پیدا کردن کارت‌های سودده
     List<HamsterCard> profitableCards =
         findProfitableCards(cards, ratioThreshold);
@@ -256,7 +258,7 @@ class _HamsterPageState extends State<HamsterPage> {
                             fontWeight: FontWeight.w600),
                       ),
                       Text(
-                        "$_myCard\nRatio: ${_myCard.costToEarningsRatio()}",
+                        "$myCard\nRatio: ${myCard.costToEarningsRatio()}",
                         style: const TextStyle(
                             color: Color(0xff536471),
                             fontFamily: 'sfpro',

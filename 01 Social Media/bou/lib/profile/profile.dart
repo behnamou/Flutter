@@ -35,7 +35,7 @@ class MyProfilePage extends StatelessWidget {
 // ------------------------------------------
 
 class _MyProfile extends StatelessWidget {
-  const _MyProfile({super.key});
+  const _MyProfile();
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,7 @@ class _MyProfile extends StatelessWidget {
                   // icon: const Icon(Icons.arrow_back_ios_new_rounded),
                   icon: const Icon(CupertinoIcons.back),
                   style: const ButtonStyle(
-                      iconColor: MaterialStatePropertyAll(Color(0xFF536471))),
+                      iconColor: WidgetStatePropertyAll(Color(0xFF536471))),
                 ),
                 flexibleSpace: FlexibleSpaceBar(
                   centerTitle: false,
