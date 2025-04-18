@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_package = "com.example.smsservice";
+option java_outer_classname = "SmsProto";
+
+service SmsService {
+  rpc SendSms (SmsRequest) returns (SmsResponse);
+}
+
+message SmsRequest {
+  string address = 1;
+  string body = 2;
+  int64 date = 3;
+}
+
+message SmsResponse {
+  bool success = 1;
+  string message = 2;
+}
